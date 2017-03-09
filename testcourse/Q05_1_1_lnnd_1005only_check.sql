@@ -1,0 +1,136 @@
+﻿CREATE VIEW "Q05_1_1_lnnd_1005only" AS
+
+SELECT 
+  ln1.gid, 
+  ln1.feature_cd, 
+  ln1.extn_f_cd, 
+  ln1.shp_node, 
+  ln1.shp_nodecd, 
+/*ln1.rep_units, 
+  ln1.rep_node1, 
+  ln1.rep_node2, 
+  ln1.rep_node3, 
+  ln1.rep_node4, 
+  ln1.rep_node5,*/ 
+  ll1.gid AS ll1gid,
+  ll1.shp_node1 AS ll1node1,
+  ll1.shp_node2 AS ll1node2,
+  ll2.gid AS ll2gid,
+  ll2.shp_node1 AS ll2node1,
+  ll2.shp_node2 AS ll2node2,
+  c112.shp_node AS c112node, 
+  c115.shp_node AS c115node, 
+  c123.shp_node1 AS c123node1, 
+  c123.shp_node2 AS c123node2, 
+  c151.shp_node1 AS c151node1, 
+  c151.shp_node2 AS c151node2, 
+  c1611.shp_node1 AS c1611node1, 
+  c1612.shp_node1 AS c1612node1,
+
+  c211.shp_node AS c211node,
+  c212.shp_node AS c212node,
+  c214.shp_node AS c214node,
+  c222.shp_node1 AS c222node1,
+  c222.shp_node2 AS c222node2, 
+  c223.shp_node1 AS c223node1,
+  c223.shp_node2 AS c223node2, 
+  c224.shp_node1 AS c224node1, 
+  c224.shp_node2 AS c224node2, 
+  c226r.shp_node1 AS c226rnode1,
+  c226r.shp_node2 AS c226rnode2,
+  c226r.shp_node11 AS c226rnode11,
+  c226r.shp_node21 AS c226rnode21,
+  c226rc.shp_node1 AS c226rcnode1,
+  c226rc.shp_node2 AS c226rcnode2,
+  c226rc.shp_node11 AS c226rcnode11,
+  c226rc.shp_node21 AS c226rcnode21,
+  c226s.shp_node1 AS c226snode1,
+  c226s.shp_node2 AS c226snode2,
+  c251.shp_node1 AS c251node1,
+  c251.shp_node2 AS c251node2,
+  c2611.shp_node1 AS c2611node1,
+  c2612.shp_node1 AS c2612node1
+  
+FROM 
+  public."1_1_lnnd_01" AS ln1 
+
+ LEFT JOIN
+  public."1_1_llnk_01" AS ll1 ON (ln1.shp_node=ll1.shp_node1 OR ln1.shp_node=ll1.shp_node2)
+ LEFT JOIN
+  public."2_4_llnk_01" AS ll2 ON (ln1.shp_node=ll2.shp_node1 OR ln1.shp_node=ll2.shp_node2)
+ LEFT JOIN
+  public.csv_1_1_1002_01 AS c112 ON ln1.shp_node=c112.shp_node 
+ LEFT JOIN
+  public.csv_1_1_1005_01 AS c115 ON ln1.shp_node=c115.shp_node 
+ LEFT JOIN
+  public.csv_1_1_2003_01 AS c123 ON (ln1.shp_node=c123.shp_node1 OR ln1.shp_node=c123.shp_node2)
+ LEFT JOIN
+  public.csv_1_1_5001_drm AS c151 ON (ln1.shp_node=c151.shp_node1 OR ln1.shp_node=c151.shp_node2)
+ LEFT JOIN
+  public.csv_1_1_6001_1_01 AS c1611 ON ln1.shp_node=c1611.shp_node1
+ LEFT JOIN
+  public.csv_1_1_6001_2_01 AS c1612 ON ln1.shp_node=c1612.shp_node1 
+
+ LEFT JOIN
+  public.csv_2_4_1001_01 AS c211 ON ln1.shp_node=c211.shp_node
+ LEFT JOIN
+  public.csv_2_4_1002_01 AS c212 ON ln1.shp_node=c212.shp_node  
+ LEFT JOIN
+  public.csv_2_4_1004_01 AS c214 ON ln1.shp_node=c214.shp_node  
+ LEFT JOIN
+  public.csv_2_4_2002_02 AS c222 ON (ln1.shp_node=c222.shp_node1 OR ln1.shp_node=c222.shp_node2)
+ LEFT JOIN
+  public.csv_2_4_2003_01 AS c223 ON (ln1.shp_node=c223.shp_node1 OR ln1.shp_node=c223.shp_node2)
+ LEFT JOIN
+  public.csv_2_4_2004_01 AS c224 ON (ln1.shp_node=c224.shp_node1 OR ln1.shp_node=c224.shp_node2)  
+ LEFT JOIN
+  public.csv_2_4_2006_r AS c226r ON (ln1.shp_node=c226r.shp_node1 OR ln1.shp_node=c226r.shp_node2 OR ln1.shp_node=c226r.shp_node11 OR ln1.shp_node=c226r.shp_node21)   
+ LEFT JOIN
+  public.csv_2_4_2006_rc AS c226rc ON (ln1.shp_node=c226rc.shp_node1 OR ln1.shp_node=c226rc.shp_node2 OR ln1.shp_node=c226rc.shp_node11 OR ln1.shp_node=c226rc.shp_node21)   
+ LEFT JOIN
+  public.csv_2_4_2006_s AS c226s ON (ln1.shp_node=c226s.shp_node1 OR ln1.shp_node=c226s.shp_node2)  
+ LEFT JOIN
+  public.csv_2_4_5001_drm AS c251 ON (ln1.shp_node=c251.shp_node1 OR ln1.shp_node=c251.shp_node2)
+ LEFT JOIN
+  public.csv_2_4_6001_1_01 AS c2611 ON ln1.shp_node=c2611.shp_node1
+ LEFT JOIN
+  public.csv_2_4_6001_2_01 AS c2612 ON ln1.shp_node=c2612.shp_node1 
+
+  
+WHERE
+   ll1.gid IS NULL
+     AND ll2.gid IS NULL
+     AND c112.shp_node IS NULL
+     AND c115.shp_node IS NULL
+     AND c123.shp_node1 IS NULL 
+     AND c123.shp_node2 IS NULL 
+ 
+     AND c151.shp_node1 IS NULL 
+     AND c151.shp_node2 IS NULL 
+     AND c1611.shp_node1 IS NULL 
+     AND c1612.shp_node1 IS NULL
+
+     AND c211.shp_node IS NULL
+     AND c212.shp_node IS NULL
+     AND c214.shp_node IS NULL
+     AND c222.shp_node1 IS NULL 
+     AND c222.shp_node2 IS NULL 
+     AND c223.shp_node1 IS NULL 
+     AND c223.shp_node2 IS NULL 
+     AND c224.shp_node1 IS NULL 
+     AND c224.shp_node2 IS NULL 
+     AND c226r.shp_node1 IS NULL 
+     AND c226r.shp_node2 IS NULL 
+     AND c226r.shp_node11 IS NULL 
+     AND c226r.shp_node21 IS NULL 
+     AND c226rc.shp_node1 IS NULL 
+     AND c226rc.shp_node2 IS NULL 
+     AND c226rc.shp_node11 IS NULL 
+     AND c226rc.shp_node21 IS NULL
+     AND c226s.shp_node1 IS NULL 
+     AND c226s.shp_node2 IS NULL  
+     AND c251.shp_node1 IS NULL 
+     AND c251.shp_node2 IS NULL 
+     AND c2611.shp_node1 IS NULL 
+     AND c2612.shp_node1 IS NULL
+;
