@@ -1,4 +1,4 @@
-﻿CREATE VIEW "Q06_1_1_lnnd_1005geom" AS
+﻿CREATE TABLE "Q06_1_1_lnnd_1005geom" AS
 
 SELECT 
   ln1.gid, 

@@ -1,4 +1,4 @@
-﻿CREATE TABLE "Q02_1_1_rdnd_1005geom" AS
+﻿CREATE TABLE "Q15_1_1_rdnd_1005only_geom_fix" AS
 
 SELECT 
   rn1.gid, 
@@ -14,8 +14,8 @@ SELECT
   rn1.rep_node5, 
   rn1.geom
 FROM 
-  public."Q01_1_1_rdnd_1005only" AS Q01, 
+  public."Q14_1_1_rdnd_vs_not_referd_list" AS Q14, 
   public."1_1_rdnd_01" AS rn1
 WHERE 
-  Q01.gid = rn1.gid
+  Q14.gid = rn1.gid
 ;
